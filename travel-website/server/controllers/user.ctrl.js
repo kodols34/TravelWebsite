@@ -23,10 +23,10 @@ module.exports = {
         {   pseudo: req.body.pseudo,
             nom: req.body.nom,
             prenom: req.body.prenom,
-            //sexe: req.body.sexe,
+            sexe: req.body.sexe,
             age: req.body.age,
             email: req.body.email,
-            //phone: req.body.phone,
+            phone: req.body.phone,
             description: req.body.description,
             //creation_date: req.body.creation_date,
             //preferences: req.body.preferences

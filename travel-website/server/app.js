@@ -1,24 +1,14 @@
 /** require dependencies */
 const express = require("express")
 const routes = require('./routes/')
-const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const helmet = require('helmet')
+const db = require('./models/db.js')
 
 const app = express()
 const router = express.Router()
-const url = "mongodb://localhost:27017/travelDB"
 
-
-/** connect to MongoDB datastore */
-try {
-    mongoose.connect(url, {
-        //useMongoClient: true
-    })
-} catch (error) {
-
-}
 
 let port = 5000 || process.env.PORT
 

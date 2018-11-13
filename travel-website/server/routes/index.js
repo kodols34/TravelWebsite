@@ -1,9 +1,9 @@
 const user = require('./user')
-const article = require('./article')
 const place = require('./place')
+const user_review = require('./user_review')
 module.exports = (router) => {
     //user(router)
-    article(router)
     place(router)
     user(router)
+    user_review(router)
 }

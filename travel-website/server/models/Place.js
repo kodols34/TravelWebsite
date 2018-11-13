@@ -1,15 +1,20 @@
 var mongoose = require('mongoose')
-
 var PlaceSchema = new mongoose.Schema({
-      nom: String,
+      nom: {
+        type: String,
+        required: true
+      },
+      address: {
+        type: String,
+        required: true
+      },
+      description: String,
       note: {
         type: Number,
         min: 0,
         max: 5
       },
       rank: Number,
-      address: String,
-      description: String,
       //review: {
       //  type: mongoose.Schema.Types.ObjectId,
       //  ref: 'UserReviewSchema'

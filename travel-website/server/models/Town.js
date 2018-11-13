@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var VilleSchema = new mongoose.Schema(
+var TownSchema = new mongoose.Schema(
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -9,4 +9,4 @@ var VilleSchema = new mongoose.Schema(
     });
 
 // Export the model
-module.exports = mongoose.model('Ville', VilleSchema)
+module.exports = mongoose.model('Town', TownSchema)
