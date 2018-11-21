@@ -20,8 +20,6 @@ public class MapHolder extends Fragment {
 
         Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-
-
         MapView map = (MapView) view.findViewById(R.id.id_map);
 
         return inflater.inflate(R.layout.fragment_map_display, container, false);
