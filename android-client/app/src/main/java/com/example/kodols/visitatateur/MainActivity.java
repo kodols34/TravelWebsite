@@ -1,5 +1,6 @@
 package com.example.kodols.visitatateur;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kodols.visitatateur.data.network.NetworkHandler;
+import com.example.kodols.visitatateur.ui.error.ErrorDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 // Code here executes on main thread after user presses button
                 View parent = (View) v.getParent();
 
-                new NetworkHandler().getObject(mContext, "http://10.232.53.158:5000/api/users");
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(String.valueOf("ok"));
+                AlertDialog dialog = builder.create();
+
+                new NetworkHandler().getObject(mContext, getSupportFragmentManager(), "http://10.232.53.158:5000/api/users");
             }
         });
     }
