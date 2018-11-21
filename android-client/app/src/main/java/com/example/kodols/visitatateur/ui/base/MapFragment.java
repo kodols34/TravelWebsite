@@ -3,11 +3,13 @@ package com.example.kodols.visitatateur.ui.base;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kodols.visitatateur.R;
+import com.example.kodols.visitatateur.ui.map.MapHolder;
 
 public class MapFragment extends Fragment {
 
@@ -34,6 +36,13 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_map, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        Fragment childFragment = new MapHolder();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.child_fragment_container, childFragment).commit();
     }
 
     @Override

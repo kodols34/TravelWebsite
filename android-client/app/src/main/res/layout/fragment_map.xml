@@ -7,9 +7,22 @@
     tools:context=".ui.base.MapFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/map_fragment" />
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_fragment" />
+
+        <FrameLayout
+            android:id="@+id/child_fragment_container"
+            android:layout_below="@id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
 
 </FrameLayout>
