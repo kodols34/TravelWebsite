@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Visitatateur</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_place">Place</string>
+    <string name="title_map">Map</string>
+    <string name="title_profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="place_fragment">place_fragment</string>
+    <string name="map_fragment">map_fragment</string>
+    <string name="profile_fragment">profile_fragment</string>
 </resources>
