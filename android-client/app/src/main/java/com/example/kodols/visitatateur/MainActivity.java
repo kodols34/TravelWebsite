@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kodols.visitatateur.data.network.NetworkHandler;
-import com.example.kodols.visitatateur.ui.error.ErrorDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage(String.valueOf("ok"));
                 AlertDialog dialog = builder.create();
-
-                new NetworkHandler().getObject(mContext, getSupportFragmentManager(), "http://10.232.53.158:5000/api/users");
+                new NetworkHandler().getObject(mContext, getSupportFragmentManager(), "http://"+BuildConfig.SERVER_URL+":5000/api/users");
             }
         });
     }

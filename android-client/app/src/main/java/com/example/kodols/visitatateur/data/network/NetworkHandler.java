@@ -27,7 +27,7 @@ public class NetworkHandler extends Activity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.v("http", "Ok");
+                        Log.v("http", String.valueOf(response));
                         try {
                             String result = "Your IP Address is " + response.getString("ip");
 
