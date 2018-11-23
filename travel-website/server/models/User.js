@@ -1,9 +1,19 @@
 var mongoose = require('mongoose')
 var UserSchema = new mongoose.Schema({
-        pseudo: {
+        email: {
           type: String,
           unique: true,
           required: true
+        },
+        password: {
+          type: String,
+          required: true
+        },
+        // The pseudo is auto generated
+        pseudo: {
+          type: String,
+          unique: true,
+          required: false
         },
         nom: {
           type: String,
@@ -16,14 +26,10 @@ var UserSchema = new mongoose.Schema({
         sexe: {
           type: String,
           required: true,
-          enum: ['Homme','Femmme']
+          enum: ['Men','Women']
         },
         age: {
           type: Number,
-          required: true
-        },
-        email: {
-          type: String,
           required: true
         },
         phone: {

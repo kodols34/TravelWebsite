@@ -1,5 +1,6 @@
 package com.example.kodols.visitatateur.ui.base;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.kodols.visitatateur.R;
+import com.example.kodols.visitatateur.ui.login.SignInActivity;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
@@ -61,10 +63,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_login:
-
+                // LOGIN LOGIC
                 break;
             case R.id.button_sign_in:
-
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                startActivity(intent);
                 break;
         }
     }
