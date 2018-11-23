@@ -52,4 +52,5 @@ public class NetworkHandler extends Activity {
         });
         mRequestQueue.add(req);
     }
+
 }

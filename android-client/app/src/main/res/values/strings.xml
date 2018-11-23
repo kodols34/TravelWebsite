@@ -3,9 +3,17 @@
     <string name="title_place">Place</string>
     <string name="title_map">Map</string>
     <string name="title_profile">Profile</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already a member? Login.</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="place_fragment">place_fragment</string>
     <string name="map_fragment">map_fragment</string>
     <string name="profile_fragment">profile_fragment</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
 </resources>
