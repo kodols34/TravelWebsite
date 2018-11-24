@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.example.kodols.visitatateur.BuildConfig;
 import com.example.kodols.visitatateur.R;
 import com.example.kodols.visitatateur.data.network.NetworkHandler;
+import com.example.kodols.visitatateur.data.network.NetworkLoginHandler;
 import com.example.kodols.visitatateur.ui.login.SignInActivity;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -72,8 +73,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 EditText email = getView().findViewById(R.id.email);
                 EditText password = getView().findViewById(R.id.password);
 
-
-                new NetworkHandler().getObject(v.getContext(), getFragmentManager(), "http://"+BuildConfig.SERVER_URL+":5000/api/user/"+email.getText());
+                new NetworkLoginHandler().login(v.getContext(), getFragmentManager(),
+                        "http://"+BuildConfig.SERVER_URL+":5000/api/user/authenticate",
+                        String.valueOf(email.getText()),
+                        String.valueOf(password.getText())
+                );
 
 
                 break;

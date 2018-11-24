@@ -7,10 +7,20 @@
     tools:context=".ui.base.PlaceFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/place_fragment" />
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/place_fragment" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 
 
 

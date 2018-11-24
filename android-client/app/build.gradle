@@ -12,14 +12,14 @@ android {
     }
     buildTypes {
         release {
-            buildConfigField "String", "SERVER_URL", '"10.232.186.83"'
-            resValue "string", "CONFIG_SERVER_URL", '"10.232.186.83"'
+            buildConfigField "String", "SERVER_URL", '"192.168.2.53"'
+            resValue "string", "CONFIG_SERVER_URL", '"192.168.2.53"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "String", "SERVER_URL", '"10.232.186.83"'
-            resValue "string", "CONFIG_ERVER_URL", '"10.232.186.83"'
+            buildConfigField "String", "SERVER_URL", '"192.168.2.53"'
+            resValue "string", "CONFIG_ERVER_URL", '"192.168.2.53"'
         }
 
     }
