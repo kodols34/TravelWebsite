@@ -5,7 +5,7 @@ var UserSchema = new mongoose.Schema({
           unique: true,
           required: true
         },
-        password: {
+        hashed_password: {
           type: String,
           required: true
         },
@@ -45,6 +45,9 @@ var UserSchema = new mongoose.Schema({
         description: {
           type: String,
           default: "I really enjoy visiting new places"
+        },
+        created_at: {
+          type: Date
         }
         //cration_date: String,
 

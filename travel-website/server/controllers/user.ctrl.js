@@ -1,6 +1,16 @@
 const User = require('./../models/User')
 const fs = require('fs')
+
+const register = require('./../functions/register');
+
 module.exports = {
+    /**
+     * authenticate user
+     */
+    authenticateUser: (req, res, next) => {
+
+
+    },
 
     /**
      * get all users
@@ -19,25 +29,35 @@ module.exports = {
      * add an user
      */
     addUser: (req, res, next) => {
-      let user = new User(
-        {   pseudo: req.body.pseudo,
-            nom: req.body.nom,
-            prenom: req.body.prenom,
-            sexe: req.body.sexe,
-            age: req.body.age,
-            email: req.body.email,
-            phone: req.body.phone,
-            description: req.body.description,
-            //creation_date: req.body.creation_date,
-            //preferences: req.body.preferences
-        }
-    );
-    user.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        res.send(`User Created successfully ${user}`)
-    })
+
+        const email = req.body.email;
+        const password = req.body.password;
+        const nom = req.body.nom;
+        const prenom = req.body.prenom;
+        const sexe = req.body.sexe;
+        const age = req.body.age;
+        const phone = req.body.phone;
+        // utile ?
+        const description = req.body.description;
+
+        if (!email || !password || !nom || !prenom || !sexe || !age || !phone ||
+            !email.trim() || !password.trim() || !nom.trim() || !prenom.trim() ||
+            !sexe.trim() || !age.trim() || !phone.trim()) {
+
+        			res.status(400).json({message: 'Invalid Request !'});
+
+        } else {
+
+        			register.registerUser(email, password, nom, prenom, sexe, age, phone, description)
+
+        			.then(result => {
+
+        				res.setHeader('Location', '/users/'+email);
+        				res.status(result.status).json({ message: result.message })
+        			})
+
+        			.catch(err => res.status(err.status).json({ message: err.message }));
+        		}
 
     },
 

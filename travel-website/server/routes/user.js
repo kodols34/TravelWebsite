@@ -3,6 +3,13 @@ const multipart = require('connect-multiparty')
 const multipartWare = multipart()
 module.exports = (router) => {
     /**
+     * auth user
+     */
+    router
+        .route('/user/authenticate')
+        .post(usercontroller.authenticateUser)
+
+    /**
      * get all users
      */
     router
