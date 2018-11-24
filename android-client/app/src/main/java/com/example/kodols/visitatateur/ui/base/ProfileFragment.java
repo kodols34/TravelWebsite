@@ -6,11 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.kodols.visitatateur.BuildConfig;
 import com.example.kodols.visitatateur.R;
@@ -69,15 +71,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_login:
-                // LOGIN LOGIC
+                // Get elements
                 EditText email = getView().findViewById(R.id.email);
                 EditText password = getView().findViewById(R.id.password);
 
-                new NetworkLoginHandler().login(v.getContext(), getFragmentManager(),
-                        "http://"+BuildConfig.SERVER_URL+":5000/api/user/authenticate",
-                        String.valueOf(email.getText()),
-                        String.valueOf(password.getText())
-                );
+                //Check if elements are empty
+                if ( areElementsEmpty(v,
+                        email.getText().toString(),
+                        password.getText().toString())
+                        ) {
+
+                    new NetworkLoginHandler().login(v.getContext(), getFragmentManager(),
+                            "http://"+BuildConfig.SERVER_URL+":5000/api/user/authenticate",
+                            String.valueOf(email.getText()),
+                            String.valueOf(password.getText())
+                    );
+                }
+
 
 
                 break;
@@ -86,6 +96,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
+    }
+
+    public boolean areElementsEmpty(View v, String email, String password){
+
+        if (email.matches("")) {
+            Toast toast = Toast.makeText(v.getContext(), "You did not entered a username", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0,250);
+            toast.show();
+            return false;
+        }
+        else if(password.matches("")) {
+            Toast toast = Toast.makeText(v.getContext(), "You did not entered a password", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0,250);
+            toast.show();
+            return false;
+        }
+        return true;
     }
 
 

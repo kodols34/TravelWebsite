@@ -53,6 +53,10 @@ public class SignInFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
+        String email = getArguments().getString("email");
+        String password = getArguments().getString("password");
+
+
         // Create button listener
         this.editText = (TextView) v.findViewById(R.id.edit_picker);
         editText.setText(String.valueOf(MIN_AGE));
