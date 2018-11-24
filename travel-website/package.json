@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "basic-auth": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
@@ -10,6 +11,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "helmet": "^3.14.0",
+    "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.8",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",

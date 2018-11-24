@@ -1,15 +1,33 @@
 const User = require('./../models/User')
 const fs = require('fs')
+const auth = require('basic-auth');
+const jwt = require('jsonwebtoken');
 
 const register = require('./../functions/register');
+const login = require('./../functions/login');
+const config = require('./../config/config.json');
+
 
 module.exports = {
     /**
      * authenticate user
      */
     authenticateUser: (req, res, next) => {
+        const credentials = auth(req);
+        		if (!credentials) {
+          			 res.status(400).json({ message: 'Invalid Request !' });
+        		} else {
+        			   login.loginUser(credentials.name, credentials.pass)
 
+        		.then(result => {
+            
+        				 const token = jwt.sign(result, config.secret, { expiresIn: 1440 });
 
+        				 res.status(result.status).json({ message: result.message, token: token });
+        		})
+
+        		.catch(err => res.status(err.status).json({ message: err.message }));
+        		}
     },
 
     /**
