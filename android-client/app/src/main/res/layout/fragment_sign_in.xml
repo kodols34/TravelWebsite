@@ -47,19 +47,6 @@
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:hint="@string/hint_email"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@color/input_register"
-                android:textColorHint="@color/input_register_hint" />
-
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,13 +72,26 @@
 
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/phone_number"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
+                android:hint="@string/hint_phone_number"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint" />
+
+            <EditText
+                android:id="@+id/bubble_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="@string/hint_bubble_description"
+                android:inputType="textAutoCorrect"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/input_register"
@@ -100,23 +100,23 @@
             <!-- Login Button -->
 
             <Button
-                android:id="@+id/button_next"
+                android:id="@+id/button_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:background="#E57E00"
-                android:text="@string/btn_next"
+                android:text="@string/btn_register"
                 android:textColor="@color/white" />
 
             <!-- Link to Login Screen -->
 
             <Button
-                android:id="@+id/button_back_login"
+                android:id="@+id/button_back_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dip"
                 android:background="@null"
-                android:text="@string/btn_link_to_login"
+                android:text="@string/btn_back_register"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15dp" />

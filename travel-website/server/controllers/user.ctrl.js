@@ -46,7 +46,8 @@ module.exports = {
      */
     getUser: (req, res, next) => {
       //res.send('Greetings from the Test controller!');
-      User.findById(req.params.id, function (err, user) {
+      User.find({'email':req.params.id}, function (err, user) {
+      //User.findById(req.params.id, function (err, user) {
         if (err) return next(err);
         res.send(user);
       })

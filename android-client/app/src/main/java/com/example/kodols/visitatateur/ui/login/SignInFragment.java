@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -56,6 +57,12 @@ public class SignInFragment extends Fragment implements View.OnClickListener{
         this.editText = (TextView) v.findViewById(R.id.edit_picker);
         editText.setText(String.valueOf(MIN_AGE));
         editText.setOnClickListener(this);
+        // Create button listener
+        Button btnBackRegister = (Button) v.findViewById(R.id.button_back_register);
+        btnBackRegister.setOnClickListener(this);
+        // Create button listener
+        Button btnRegister = (Button) v.findViewById(R.id.button_register);
+        btnRegister.setOnClickListener(this);
 
         return v;
     }
@@ -89,7 +96,12 @@ public class SignInFragment extends Fragment implements View.OnClickListener{
                 dialogFrag.setTargetFragment(this, DIALOG_FRAGMENT);
                 dialogFrag.show(getFragmentManager().beginTransaction(), "dialog");
                 break;
+            case R.id.button_back_register:
+                getActivity().onBackPressed();
+                break;
+            case R.id.button_register:
 
+                break;
         }
     }
 

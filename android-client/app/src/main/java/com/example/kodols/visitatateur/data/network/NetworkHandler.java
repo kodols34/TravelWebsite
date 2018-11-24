@@ -10,31 +10,27 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.kodols.visitatateur.ui.error.ErrorDialogFragment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class NetworkHandler extends Activity {
 
     public void getObject(final Context mContext, final FragmentManager fm, final String url){
-        //String url = BuildConfig.DEBUG + uri;
 
+        Log.v("data", url);
         RequestQueue mRequestQueue = Volley.newRequestQueue(mContext);
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.v("http", String.valueOf(response));
-                        try {
-                            String result = "Your IP Address is " + response.getString("ip");
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    public void onResponse(JSONArray response) {
+                        Log.v("data", String.valueOf(response));
                     }
                 }, new Response.ErrorListener() {
                     @Override

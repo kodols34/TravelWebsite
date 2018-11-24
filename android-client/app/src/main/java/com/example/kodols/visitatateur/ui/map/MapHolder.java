@@ -18,21 +18,26 @@ import org.osmdroid.views.MapView;
 
 public class MapHolder extends Fragment {
 
-    MapView map = null;
+    private MapView mMapView;
+    private MapController mMapController;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_map_display, container, false);
 
-        Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));
-        View view = inflater.inflate(R.layout.fragment_map_display, container, false);
         // Setup map view
-        MapView mapView = (MapView) view.findViewById(R.id.id_map);
-
+        mMapView = (MapView) v.findViewById(R.id.id_map);
+        mMapView.setTileSource(TileSourceFactory.MAPNIK);
+        mMapView.setBuiltInZoomControls(true);
         // Applying parameters
-        mapView.setTileSource(TileSourceFactory.MAPNIK);
-        mapView.setBuiltInZoomControls(true);
-        mapView.setMultiTouchControls(true);
+        mMapController = (MapController) mMapView.getController();
+        mMapController.setZoom(16);
+        GeoPoint startPoint = new GeoPoint(45.404476, -71.888351);
+        mMapController.setCenter(startPoint);
 
-        return inflater.inflate(R.layout.fragment_map_display, container, false);
+        //Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));
+
+        return v;
     }
 
     @Override

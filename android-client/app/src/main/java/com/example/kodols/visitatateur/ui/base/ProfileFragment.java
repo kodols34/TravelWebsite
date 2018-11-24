@@ -1,15 +1,20 @@
 package com.example.kodols.visitatateur.ui.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
+import com.example.kodols.visitatateur.BuildConfig;
 import com.example.kodols.visitatateur.R;
+import com.example.kodols.visitatateur.data.network.NetworkHandler;
 import com.example.kodols.visitatateur.ui.login.SignInActivity;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -64,6 +69,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.button_login:
                 // LOGIN LOGIC
+                EditText email = getView().findViewById(R.id.email);
+                EditText password = getView().findViewById(R.id.password);
+
+
+                new NetworkHandler().getObject(v.getContext(), getFragmentManager(), "http://"+BuildConfig.SERVER_URL+":5000/api/user/"+email.getText());
+
+
                 break;
             case R.id.button_sign_in:
                 Intent intent = new Intent(getActivity(), SignInActivity.class);

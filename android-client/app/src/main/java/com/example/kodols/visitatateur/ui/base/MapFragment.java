@@ -35,14 +35,17 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        Fragment childFragment = new MapHolder();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.child_fragment_container, childFragment).commit();
+
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Fragment childFragment = new MapHolder();
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.child_fragment_container, childFragment).commit();
+
     }
 
     @Override
