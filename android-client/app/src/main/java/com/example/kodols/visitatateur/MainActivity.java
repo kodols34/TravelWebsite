@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         fm.beginTransaction().add(R.id.main_container, profileFragment, "3").hide(profileFragment).commit();
         fm.beginTransaction().add(R.id.main_container, mapFragment, "2").hide(mapFragment).commit();
-        fm.beginTransaction().add(R.id.main_container,placeFragment, "1").commit();
+        fm.beginTransaction().add(R.id.main_container, placeFragment, "1").commit();
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
 
@@ -74,6 +75,37 @@ public class MainActivity extends AppCompatActivity {
          //       new NetworkHandler().getObject(mContext, getSupportFragmentManager(), "http://"+BuildConfig.SERVER_URL+":5000/api/users");
          //   }
         //});
+        Log.v("LifeCycle", "onCreate");
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.v("LifeCycle", "onResume");
+
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.v("LifeCycle", "onDestroy");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.v("LifeCycle", "onPause");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.v("LifeCycle", "onStop");
+    }
+   @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.v("LifeCycle", "onRestart");
     }
 
 

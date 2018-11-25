@@ -24,7 +24,7 @@ exports.registerUser = (email, password, nom, prenom, sexe, age, phone, descript
       			created_at: new Date()
 
 		  });
-
+      
 		newUser.save()
 
 		.then(() => resolve({ status: 201, message: 'User Registered Sucessfully !' }))

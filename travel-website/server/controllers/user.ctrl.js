@@ -20,7 +20,7 @@ module.exports = {
         			   login.loginUser(credentials.name, credentials.pass)
 
         		.then(result => {
-            
+
         				 const token = jwt.sign(result, config.secret, { expiresIn: 1440 });
 
         				 res.status(result.status).json({ message: result.message, token: token });
@@ -47,7 +47,7 @@ module.exports = {
      * add an user
      */
     addUser: (req, res, next) => {
-
+console.log(res.body);
         const email = req.body.email;
         const password = req.body.password;
         const nom = req.body.nom;
@@ -70,8 +70,10 @@ module.exports = {
 
         			.then(result => {
 
+                const token = jwt.sign(result, config.secret, { expiresIn: 1440 });
+
         				res.setHeader('Location', '/users/'+email);
-        				res.status(result.status).json({ message: result.message })
+        				res.status(result.status).json({ message: result.message, token: token })
         			})
 
         			.catch(err => res.status(err.status).json({ message: err.message }));

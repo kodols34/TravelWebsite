@@ -56,7 +56,7 @@
 
         <!-- Link to Login Screen -->
         <Button
-            android:id="@+id/button_sign_in"
+            android:id="@+id/button_sign_up"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"

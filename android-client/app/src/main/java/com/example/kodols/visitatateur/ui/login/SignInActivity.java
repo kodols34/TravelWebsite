@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.kodols.visitatateur.BuildConfig;
 import com.example.kodols.visitatateur.R;
-import com.example.kodols.visitatateur.data.network.NetworkLoginHandler;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
 

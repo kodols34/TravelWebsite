@@ -38,7 +38,7 @@ public class MapFragment extends Fragment {
 
         Fragment childFragment = new MapHolder();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.child_fragment_container, childFragment).commit();
+        //transaction.replace(R.id.child_fragment_container, childFragment).commit();
 
         return inflater.inflate(R.layout.fragment_map, container, false);
     }

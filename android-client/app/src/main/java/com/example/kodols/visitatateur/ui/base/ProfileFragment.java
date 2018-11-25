@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.example.kodols.visitatateur.BuildConfig;
 import com.example.kodols.visitatateur.R;
-import com.example.kodols.visitatateur.data.network.NetworkHandler;
-import com.example.kodols.visitatateur.data.network.NetworkLoginHandler;
+import com.example.kodols.visitatateur.data.network.NetworkUserUtils;
+import com.example.kodols.visitatateur.data.network.VolleyResponseListener;
+import com.example.kodols.visitatateur.ui.error.NetworkErrorManager;
 import com.example.kodols.visitatateur.ui.login.SignInActivity;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -50,7 +52,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         Button btnLogin = (Button) v.findViewById(R.id.button_login);
         btnLogin.setOnClickListener(this);
         // Create button listener
-        Button btnSignIn = (Button) v.findViewById(R.id.button_sign_in);
+        Button btnSignIn = (Button) v.findViewById(R.id.button_sign_up);
         btnSignIn.setOnClickListener(this);
 
         return v;
@@ -81,17 +83,28 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         password.getText().toString())
                         ) {
 
-                    new NetworkLoginHandler().login(v.getContext(), getFragmentManager(),
-                            "http://"+BuildConfig.SERVER_URL+":5000/api/user/authenticate",
+                    new NetworkUserUtils().POST_LOGIN(v.getContext(),
+                            "http://" + BuildConfig.SERVER_URL + ":5000/api/user/authenticate",
                             String.valueOf(email.getText()),
-                            String.valueOf(password.getText())
+                            String.valueOf(password.getText()),
+                            new VolleyResponseListener() {
+                                @Override
+                                public void onResponse(Object response) {
+                                    // Here's OK from server w/ session token
+                                }
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    NetworkErrorManager.loginError(error, getContext(), getFragmentManager());
+                                }
+                            }
                     );
                 }
 
 
 
                 break;
-            case R.id.button_sign_in:
+            case R.id.button_sign_up:
                 Intent intent = new Intent(getActivity(), SignInActivity.class);
                 startActivity(intent);
                 break;

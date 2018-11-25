@@ -29,4 +29,5 @@
     <string name="hint_phone_number">Phone number</string>
     <string name="hint_bubble_description">Description</string>
     <string name="btn_back_register">Go back.</string>
+    <string name="welcome">Welcome</string>
 </resources>
