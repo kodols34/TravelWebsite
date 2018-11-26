@@ -1,5 +1,7 @@
 package com.example.kodols.visitatateur;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,12 +9,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.example.kodols.visitatateur.ui.base.MapFragment;
 import com.example.kodols.visitatateur.ui.base.PlaceFragment;
 import com.example.kodols.visitatateur.ui.base.ProfileFragment;
+import com.example.kodols.visitatateur.ui.base.ProfileLoggedFragment;
+import com.example.kodols.visitatateur.utils.SessionUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     final PlaceFragment placeFragment = new PlaceFragment();
     final MapFragment mapFragment = new MapFragment();
     final ProfileFragment profileFragment = new ProfileFragment();
+    final ProfileLoggedFragment profileLoggedFragment = new ProfileLoggedFragment();
 
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = placeFragment;
@@ -39,8 +46,16 @@ public class MainActivity extends AppCompatActivity {
                     active = mapFragment;
                     return true;
                 case R.id.navigation_profile:
-                    fm.beginTransaction().hide(active).show(profileFragment).commit();
-                    active = profileFragment;
+                    boolean bool = new SessionUtils().isSessionActive(getApplicationContext());
+                    if (bool){
+                        fm.beginTransaction().hide(active).show(profileLoggedFragment).commit();
+                        active = profileLoggedFragment;
+                    }
+                    else {
+                        fm.beginTransaction().hide(active).show(profileFragment).commit();
+                        active = profileFragment;
+                    }
+
                     return true;
             }
             return false;
@@ -52,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fm.beginTransaction().add(R.id.main_container, profileLoggedFragment, "4").hide(profileLoggedFragment).commit();
         fm.beginTransaction().add(R.id.main_container, profileFragment, "3").hide(profileFragment).commit();
         fm.beginTransaction().add(R.id.main_container, mapFragment, "2").hide(mapFragment).commit();
         fm.beginTransaction().add(R.id.main_container, placeFragment, "1").commit();
@@ -61,20 +77,6 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        //final Context mContext = getApplicationContext();
-
-        //final Button button = findViewById(R.id.button2);
-        //button.setOnClickListener(new View.OnClickListener() {
-        //    public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-         //       View parent = (View) v.getParent();
-
-         //       AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-         //       builder.setMessage(String.valueOf("ok"));
-         //       AlertDialog dialog = builder.create();
-         //       new NetworkHandler().getObject(mContext, getSupportFragmentManager(), "http://"+BuildConfig.SERVER_URL+":5000/api/users");
-         //   }
-        //});
         Log.v("LifeCycle", "onCreate");
     }
 

@@ -3,6 +3,7 @@ package com.example.kodols.visitatateur.ui.login;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.button_next:
                 String email = emailET.getText().toString();
                 String password = passwordET.getText().toString();
-                //Check if elements are empty
+               //Check if elements are empty
                 if ( areElementsEmpty(v, email, password) ) {
                     // Add login/password in bundle to share
                     Bundle bundle = new Bundle();

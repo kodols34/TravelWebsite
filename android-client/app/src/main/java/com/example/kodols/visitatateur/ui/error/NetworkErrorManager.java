@@ -2,6 +2,7 @@ package com.example.kodols.visitatateur.ui.error;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class NetworkErrorManager {
         }
     }
 
-    public static void registernError(VolleyError error, Context context, FragmentManager fm){
+    public static void registerError(VolleyError error, Context context, FragmentManager fm){
         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
             //This indicates that the reuest has either time out or there is no connection
             //Create DialogFragment pop-up
@@ -55,13 +56,24 @@ public class NetworkErrorManager {
             newFragment.show(fm, "dialog");
         } else if (error instanceof AuthFailureError) {
             //Error indicating that there was an Authentication Failure while performing the request
-            
+
         } else if (error instanceof ServerError) {
             //Indicates that the server responded with a error response
             String errorName = "Error: "+String.valueOf(error.networkResponse.statusCode);
+            String errorMessage;
+            Log.v("DataD", String.valueOf(error.networkResponse.statusCode));
+            if ( error.networkResponse.statusCode == 500 ){
+                errorMessage = "Bad phone format, must be 3 digits - 3 digits - 4 digits. Example: 123-456-7890";
+            }
+            else if ( error.networkResponse.statusCode == 409 ){
+                errorMessage = "User already exists";
+            }
+            else {
+                errorMessage = "Unknown error";
+            }
             ErrorDialogFragment newFragment = ErrorDialogFragment.newInstance(
-                    errorName,
-                    "User already exists");
+                    errorName, errorMessage
+                    );
             newFragment.show(fm, "dialog");
 
         } else if (error instanceof NetworkError) {
